@@ -21,7 +21,7 @@ from openunreid.utils.config import (
 from openunreid.utils.dist_utils import init_dist, synchronize
 from openunreid.utils.file_utils import mkdir_if_missing
 from openunreid.utils.logger import Logger
-os.environ['CUDA_VISIBLE_DEVICES'] = '4,5'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
 
 def parge_config():
     parser = argparse.ArgumentParser(description="Strong cluster baseline training")

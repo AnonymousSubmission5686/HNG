@@ -20,10 +20,9 @@ MODEL:
 
   # pretraining
   imagenet_pretrained: False
-  source_pretrained: '../logs/strong_baseline/model_best_veri.pth'
-  G_pretrained: '../logs/duke/stage2/checkpoint_generator.pth'
-  D_pretrained: '../logs/duke/stage2/checkpoint_discriminator.pth'
-#  source_pretrained: null
+  source_pretrained: '../logs/spcl_warmup_duke.pth'
+  G_pretrained: '../logs/warmup_generator_duke.pth'
+  D_pretrained: '../logs/warmup_discriminator_duke.pth'
 
 DATA:
 
@@ -62,7 +61,7 @@ TRAIN:
   stage3_train_all: True
 
   # datasets
-  datasets: {'veri': 'trainval',}
+  datasets: {'dukemtmcreid': 'trainval',}
 #  datasets: {'market1501': 'trainval', 'dukemtmcreid': 'trainval'}
   unsup_dataset_indexes: [0,]
 
@@ -76,8 +75,8 @@ TRAIN:
     momentum: 0.2
 
   # validate
-  val_dataset: 'veri'
-  val_freq: 1
+  val_dataset: 'dukemtmcreid'
+  val_freq: 5
 
   # sampler
   SAMPLER:
@@ -86,7 +85,7 @@ TRAIN:
 
   # data loader
   LOADER:
-    samples_per_gpu: 32
+    samples_per_gpu: 16
     workers_per_gpu: 2
 
   # pseudo labels

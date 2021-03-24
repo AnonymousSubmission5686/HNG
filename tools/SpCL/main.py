@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.nn.parallel import DataParallel, DistributedDataParallel
-os.environ['CUDA_VISIBLE_DEVICES'] = '4,5'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,1,2,3'
 
 from openunreid.apis import BaseRunner, batch_processor, test_reid, set_random_seed
 from openunreid.core.solvers import build_lr_scheduler, build_optimizer
@@ -175,33 +175,14 @@ class SpCLRunner(BaseRunner):
         x_neg = torch.stack(x_neg)
         targets_neg = torch.tensor(targets_neg)
 
-        #随机噪声
-        # shape = x_ori.size()
-        # noise = torch.cuda.FloatTensor(shape) if torch.cuda.is_available() else torch.FloatTensor(shape)
-        # torch.randn(shape, out=noise)
-        # x_neg = noise
-
-        # noise = []
-        # for i in range(len(targets)):
-        #     n = torch.zeros((3, 256, 128)).normal_().cuda()
-        #     noise.append(n.normal_())
-        # noise = torch.stack(noise)
-        # x_neg = noise
-
         x_gen_ori, x_gen_ori_neg = self.model['generator'](x_ori, x_neg, self.mix_weight)
 
         if self.cfg.TRAIN.stage == 2:
             # -------------------------------------------
             self.set_requires_grad([self.model['discriminator']], False)
             self.optimizer['generator'].zero_grad()
-            # d_x_gen_ori_neg = self.model['discriminator'](x_gen_ori_neg)
-            # d_x_gen_ori = self.model['discriminator'](x_gen_ori)
-            # loss_G_real1 = self.criterions['gan_G'](d_x_gen_ori_neg, True)
-            # loss_G_real2 = self.criterions['gan_G'](d_x_gen_ori, True)
-            # loss_G_real = (loss_G_real1 + loss_G_real2)
             loss_recon = self.criterions['recon'](x_gen_ori, x_ori) * 10
             loss_G = loss_recon
-            # loss_G = loss_recon+ad_loss
             loss_G.backward(retain_graph=False)
             self.optimizer['generator'].step()
 
@@ -232,7 +213,6 @@ class SpCLRunner(BaseRunner):
             results["prob_aug"] = results_aug['prob']
 
             ce_loss = self.criterions["cross_entropy"](results_gen, targets_neg) * 1
-            # ce_loss = 0
 
             spcl_loss, ad_loss, co_loss = self.criterions["hybrid_memory"](results, indexes)
             loss_id = spcl_loss+co_loss
@@ -448,7 +428,6 @@ def main():
 
     # load the best model
     runner.resume(cfg.work_dir / "model_best_id.pth")
-    # runner.resume('/home/dongdong_li/OpenUnReID/logs/SpCL_stage3_train_all2/checkpoint_id.pth')
 
     # final testing
     test_loaders, queries, galleries = build_test_dataloader(cfg)

@@ -19,10 +19,10 @@ MODEL:
   alpha: 0.999
 
   # pretraining
-  imagenet_pretrained: True
-  source_pretrained: '../logs/strong_baseline/model_best_veri.pth'
-  G_pretrained: '../logs/veri/stage2/checkpoint_generator.pth'
-  D_pretrained: '../logs/veri/stage2/checkpoint_discriminator.pth'
+  imagenet_pretrained: False
+  source_pretrained: '../logs/baseline_warmup_duke.pth'
+  G_pretrained: '../logs/warmup_generator_duke.pth'
+  D_pretrained: '../logs/warmup_discriminator_duke.pth'
 
 DATA:
 
@@ -61,12 +61,12 @@ TRAIN:
   stage3_train_all: True
 
   # datasets
-  datasets: {'veri': 'trainval',}
+  datasets: {'dukemtmcreid': 'trainval',}
   # datasets: {'market1501': 'trainval', 'dukemtmcreid': 'trainval'}
   unsup_dataset_indexes: [0,]
 
   epochs: 20
-  iters: 200
+  iters: 100
 
   LOSS:
     losses: {'cross_entropy': 1., 'softmax_triplet': 1,'recon': 10., 'gan_D': 1.,
@@ -75,7 +75,7 @@ TRAIN:
 
 
   # validate
-  val_dataset: 'veri'
+  val_dataset: 'dukemtmcreid'
   val_freq: 5
 
   # sampler
@@ -85,7 +85,7 @@ TRAIN:
 
   # data loader
   LOADER:
-    samples_per_gpu: 32
+    samples_per_gpu: 16
     workers_per_gpu: 2
 
   # pseudo labels
@@ -108,11 +108,6 @@ TRAIN:
     # cluster_num: [500,]
     # dist_cuda: True
 
-  # optim
-#  OPTIM:
-#    optim: 'adam'
-#    lr: 0.00035
-#    weight_decay: 0.0005
 
   # optim
   OPTIM:
@@ -128,15 +123,14 @@ TRAIN:
 
 
   SCHEDULER:
-    lr_scheduler: 'single_step'  #'warmup_multi_step'   #
-    stepsize: [10]
+    lr_scheduler: 'single_step'
+    stepsize: 10
     gamma: 0.1
-#    warmup_steps: 1000
 
 TEST:
 
   # datasets
-  datasets: ['veri',]
+  datasets: ['dukemtmcreid',]
 
   # data loader
   LOADER:
