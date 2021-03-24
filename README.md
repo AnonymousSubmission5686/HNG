@@ -21,12 +21,12 @@ bash dist_test.sh ../logs/spcl+ours_duke.pth SpCL/config.yaml
 ## Train
 We provide warmup models([baseline_warmup_duke.pth](https://drive.google.com/file/d/1q7zXZ4w7iYfK_Ew7_fQ4N1Jakk61HcVz/view?usp=sharing), [spcl_warmup_duke.pth](https://drive.google.com/file/d/1fo1-A_Aokp9ollq1BFXMwQ7sdacbCmUt/view?usp=sharing), [warmup_generator_duke.pth](https://drive.google.com/file/d/1HmQKMTiiRN9MWeNBbtV3bRj5brPbDbd7/view?usp=sharing), [warmup_discriminator_duke.pth](https://drive.google.com/file/d/1OX0njSr5_OR9_yqkfwH3eGRW86qqShxG/view?usp=sharing)) for simplifing the training procedure, download and put them in `logs`.
 
-+ Training baseline+ours:
++ Training baseline+ours on DukeMTMC-ReID:
 ```shell
 bash dist_train.sh strong_baseline/config.yaml duke/baseline+ours
 ```
 
-+ Training spcl+ours:
++ Training spcl+ours on DukeMTMC-ReID:
 ```shell
 bash dist_train.sh SpCL/config.yaml duke/spcl+ours
 ```
