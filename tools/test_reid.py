@@ -73,17 +73,21 @@ def main():
     model = build_model(
         cfg, 0
     )  # use num_classes=0 since we do not need classifier for testing
-    model.cuda()
+    for key in model.keys():
+        model[key].cuda()
+    #model.cuda()
 
     if dist:
-        model = torch.nn.parallel.DistributedDataParallel(
-            model,
-            device_ids=[cfg.gpu],
-            output_device=cfg.gpu,
-            find_unused_parameters=True,
-        )
+        for key in model.keys():
+            model[key] = torch.nn.parallel.DistributedDataParallel(
+                model[key],
+                device_ids=[cfg.gpu],
+                output_device=cfg.gpu,
+                find_unused_parameters=True,
+            )
     elif cfg.total_gpus > 1:
-        model = torch.nn.DataParallel(model)
+        for key in model.keys():
+            model[key] = torch.nn.DataParallel(model[key])
 
     # load checkpoint
     state_dict = load_checkpoint(args.resume)
@@ -96,14 +100,14 @@ def main():
             continue
 
         print("==> Test with {}".format(key))
-        copy_state_dict(state_dict[key], model)
+        copy_state_dict(state_dict[key], model['id'])
 
         # start testing
         for i, (loader, query, gallery) in enumerate(
             zip(test_loaders, queries, galleries)
         ):
             cmc, mAP = test_reid(
-                cfg, model, loader, query, gallery, dataset_name=cfg.TEST.datasets[i]
+                cfg, model['id'], loader, query, gallery, dataset_name=cfg.TEST.datasets[i]
             )
 
     # print time
