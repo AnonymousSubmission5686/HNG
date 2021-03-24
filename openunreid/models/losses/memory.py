@@ -1,5 +1,5 @@
 # Ge et al. Self-paced Contrastive Learning with Hybrid Memory for Domain Adaptive Object Re-ID.  # noqa
-# Written by Yixiao Ge.
+# Written by xxx.
 
 import torch
 import torch.nn.functional as F

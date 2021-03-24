@@ -1,4 +1,4 @@
-# Written by Yixiao Ge
+# Written by xxx
 
 import torch.nn as nn
 from torch.nn import init

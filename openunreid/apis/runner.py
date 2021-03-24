@@ -1,4 +1,4 @@
-# Written by Yixiao Ge
+# Written by xxx
 
 import collections
 import os
@@ -190,16 +190,6 @@ class BaseRunner(object):
         self.train_loader, self.train_sets = build_train_dataloader(
             self.cfg, pseudo_labels, self.train_sets, self._epoch,
         )
-        # os.mkdir('/home/dongdong_li/OpenUnReID/logs/strong_baseline/market/cluster')
-        # for i in list(range(self.model['id'].module.num_classes)):
-        #     path = '/home/dongdong_li/OpenUnReID/logs/strong_baseline/market/cluster/' + str(i)
-        #     os.mkdir(path)
-        #     for t in self.train_sets[0].data:
-        #         if t[1] == i:
-        #             image = Image.open(t[0])
-        #             img = np.array(image)
-        #             save_image(img, osp.join(path, t[0].split('/')[-1]))
-
 
         # update criterions
         if "cross_entropy" in self.criterions.keys():

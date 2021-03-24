@@ -1,4 +1,4 @@
-# Written by Yixiao Ge
+# Written by xxx
 import os
 import copy
 import warnings

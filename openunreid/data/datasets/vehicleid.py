@@ -1,4 +1,4 @@
-# Written by Zhiwei Zhang
+# Written by xxx
 
 import os.path as osp
 import random

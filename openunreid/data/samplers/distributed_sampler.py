@@ -1,4 +1,4 @@
-# Written by Yixiao Ge
+# Written by xxx
 
 import torch
 from torch.utils.data.sampler import Sampler

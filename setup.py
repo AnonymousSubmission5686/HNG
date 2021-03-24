@@ -117,8 +117,8 @@ if __name__ == "__main__":
         version=get_version(),
         description="Unsupervised (Domain Adaptive) Object Re-ID Toolbox and Benchmark",
         long_description=readme(),
-        author="Yixiao Ge",
-        author_email="geyixiao831@gmail.com",
+        author="xxx",
+        author_email="xxx@gmail.com",
         keywords="computer vision, unsupervised learning, domain adaptation, object re-ID",  # noqa
         url="https://github.com/open-mmlab/OpenUnReID",
         packages=find_packages(),

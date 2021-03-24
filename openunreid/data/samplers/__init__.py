@@ -1,4 +1,4 @@
-# Written by Yixiao Ge
+# Written by xxx
 
 from ..utils.dataset_wrapper import JointDataset
 from .distributed_identity_sampler import (

@@ -8,12 +8,12 @@ Please refer to [INSTALL.md](docs/INSTALL.md) for installation and dataset prepa
 We provide models trained on DukeMTMC-ReID for testing. 
 You can download them([baseline+ours_duke.pth](https://drive.google.com/file/d/1JA_vFjcLB_AwxV25aH3MyHA3lH_Ea7K6/view?usp=sharing), [spcl+ours_duke.pth](https://drive.google.com/file/d/12Jx466C_GcF-ulzRs_WBc4eNC2s6fA9t/view?usp=sharing)) from google drive, and place in `logs`.
 
-+ Testing with [baseline+ours](https://drive.google.com/file/d/1JA_vFjcLB_AwxV25aH3MyHA3lH_Ea7K6/view?usp=sharing) on DukeMTMC-ReID:
++ Testing baseline+ours on DukeMTMC-ReID:
 ```shell
 bash dist_test.sh ../logs/baseline+ours_duke.pth strong_baseline/config.yaml
 ```
 
-+ Testing with [spcl+ours](https://drive.google.com/file/d/12Jx466C_GcF-ulzRs_WBc4eNC2s6fA9t/view?usp=sharing) on DukeMTMC-ReID:
++ Testing spcl+ours on DukeMTMC-ReID:
 ```shell
 bash dist_test.sh ../logs/spcl+ours_duke.pth SpCL/config.yaml
 ```
