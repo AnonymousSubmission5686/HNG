@@ -14,12 +14,12 @@ We have tested the following versions of OS and softwares:
 + PyTorch: 1.1/1.5/1.6
 + CUDA: 9.0/11.0
 
-### Install OpenUnReID
+### Install
 
 **a.** Create a conda virtual environment and activate it.
 ```shell
-conda create -n open-mmlab python=3.7 -y
-conda activate open-mmlab
+conda create -n HNG python=3.7 -y
+conda activate HNG
 ```
 
 **b.** Install PyTorch and torchvision following the [official instructions](https://pytorch.org/), e.g.,
@@ -27,10 +27,10 @@ conda activate open-mmlab
 conda install pytorch torchvision -c pytorch
 ```
 
-**c.** Clone the this repository.
+**c.** Clone this repository.
 ```shell
-git clone https://github.com/open-mmlab/OpenUnReID.git
-cd OpenUnReID
+git clone https://github.com/AnonymousSubmission5686/HNG.git
+cd HNG
 ```
 
 **d.** Install the dependent libraries.
@@ -38,27 +38,15 @@ cd OpenUnReID
 pip install -r requirements.txt
 ```
 
-**e.** Install `openunreid` library.
+**e.** Install library.
 ```shell
 python setup.py develop
-```
-
-**f.** Support [AutoAugment](https://arxiv.org/abs/1805.09501). (optional)
-
-You may meet the following error when using `DATA.TRAIN.is_autoaug=True` in config files,
->AttributeError: Can't pickle local object 'SubPolicy.__init__.<locals>.<lambda>'
-
-To solve it, you need to replace `multiprocessing` with `multiprocess` in `torch.multiprocessing` (generally found in `$CONDA/envs/open-mmlab/lib/python3.7/site-packages/torch/multiprocessing/`), e.g.
-```shell
-# refer to https://github.com/DeepVoltaire/AutoAugment/issues/16
-import multiprocess as multiprocessing
-from multiprocess import *
 ```
 
 
 ### Prepare datasets
 
-It is recommended to symlink your dataset root to `OpenUnReID/datasets`. If your folder structure is different, you may need to change the corresponding paths (namely `DATA_ROOT`) in config files.
+It is recommended to symlink your dataset root to `HNG/datasets`. If your folder structure is different, you may need to change the corresponding paths (namely `DATA_ROOT`) in config files.
 
 Download the datasets from
 + DukeMTMC-reID: [[Google Drive]](https://drive.google.com/file/d/1jjE85dRCMOgRtvJ5RQV9-Afs-2_5dY3O/view) [[Baidu Pan]](https://pan.baidu.com/share/init?surl=jS0XM7Var5nQGcbf9xUztw) (password: bhbh)
@@ -71,7 +59,7 @@ Download the datasets from
 
 Save them under
 ```shell
-OpenUnReID
+HNG
 └── datasets
     ├── dukemtmcreid
     │   └── DukeMTMC-reID
