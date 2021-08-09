@@ -28,12 +28,12 @@ We provide warmup models([baseline_warmup_duke.pth](https://drive.google.com/fil
 
 + Training baseline+ours on DukeMTMC-ReID:
 ```shell
-bash dist_train.sh strong_baseline/config.yaml duke/baseline+ours
+bash dist_train.sh strong_baseline duke/baseline+ours
 ```
 
 + Training spcl+ours on DukeMTMC-ReID:
 ```shell
-bash dist_train.sh SpCL/config.yaml duke/spcl+ours
+bash dist_train.sh SpCL duke/spcl+ours
 ```
 
 
